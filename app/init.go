@@ -1,6 +1,11 @@
 package app
 
-import "github.com/revel/revel"
+import (
+	//"github.com/jinzhu/gorm"
+	//_ "github.com/lib/pq"
+	"github.com/revel/revel"
+	//"gofeeder/app/models"
+)
 
 func init() {
 	// Filters is the default set of global filters.
@@ -23,6 +28,7 @@ func init() {
 	// ( order dependent )
 	// revel.OnAppStart(InitDB())
 	// revel.OnAppStart(FillCache())
+	// revel.OnAppStart(InitDB)
 }
 
 // TODO turn this into revel.HeaderFilter
@@ -36,3 +42,20 @@ var HeaderFilter = func(c *revel.Controller, fc []revel.Filter) {
 
 	fc[0](c, fc[1:]) // Execute the next filter stage.
 }
+
+/*
+var InitDB func() = func() {
+	//db, err := gorm.Open("sqlite3", "/tmp/goreeder.db")
+	db, err := gorm.Open("postgres", "user=gofeeder password=gofeeder dbname=gofeeder sslmode=disable")
+	if err != nil {
+		revel.ERROR.Fatal(err)
+	}
+
+	db.DB()
+
+	db.AutoMigrate(models.Feed{})
+	db.AutoMigrate(models.Item{})
+
+	db.SingularTable(true)
+}
+*/
