@@ -42,6 +42,9 @@ func InitDB() {
 	db.DB()
 	db.AutoMigrate(models.Feed{})
 	db.AutoMigrate(models.Item{})
+	//db.Create(models.Feed{Name: "reddit", Url: "http://localhost:9000/public/rss/reddit.xml"})
+	//db.Create(models.Feed{Name: "hn", Url: "http://localhost:9000/public/rss/hn.xml"})
+	//db.AutoMigrate(models.FeedItems{})
 
 	// figure out how to test ENV
 	db.LogMode(true)

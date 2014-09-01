@@ -1,0 +1,6 @@
+// github.com/nitrous-io/goop
+code.google.com/p/go.tools/cmd/goimports
+github.com/revel/revel 
+github.com/jinzhu/gorm #9c7ff3d211628a73b29032a5d8a6564b3f72ed3e
+github.com/lib/pq #b021d0ef20de4f7ed239e2cbe3b95648d8e41e95
+github.com/SlyMarbo/rss #1905d0172ea2831d514584bfc6471c61df3cf247
