@@ -1,4 +1,4 @@
-// pull out into job/cli process
+// pull out into job/cli process.  look into the revel worker thing
 package controllers
 
 import (
@@ -40,11 +40,13 @@ func (c Fetch) Fetch() revel.Result {
 
 func handleFeed(rssFeed *rss.Feed, feed models.Feed) {
 	for _, feedItem := range rssFeed.Items {
+		// todo: check if url to update if exists.  prevent reposts of urls within timeframe
 		item := models.Item{
-			//Feeds:   []models.Feed{feed},
-			Name:    feedItem.Title,
-			Content: feedItem.Content,
-			Url:     feedItem.Link}
+			//Feeds:   []models.Feed{feed}, // this works, but causes an update on feed each save. so back to raw sql below
+			Name:        feedItem.Title,
+			Content:     feedItem.Content,
+			Url:         feedItem.Link,
+			DateCreated: time.Now()}
 		Db.Save(&item)
 
 		sql := "INSERT INTO feed_items (item_id, feed_id) SELECT ?,? WHERE NOT EXISTS (SELECT * FROM feed_items WHERE item_id =? AND feed_id =?)"
