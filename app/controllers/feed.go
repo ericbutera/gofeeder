@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/revel/revel"
-	"gofeeder/app/models"
+	"github.com/ericbutera/gofeeder/app/models"
 )
 
 type Feed struct {

@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq"
+  //_ "github.com/mattn/go-sqlite3"
 	"github.com/revel/revel"
-	"gofeeder/app/models"
+	"github.com/ericbutera/gofeeder/app/models"
 )
 
 var (
@@ -34,7 +35,7 @@ func getConnectionString() string {
 
 func InitDB() {
 	revel.INFO.Printf("inside init db!")
-	//Db, err := gorm.Open("sqlite3", "/tmp/goreeder.db")
+	//db, err := gorm.Open("sqlite3", "/tmp/gofeeder.db")
 	db, err := gorm.Open("postgres", getConnectionString())
 	if err != nil {
 		revel.ERROR.Fatal(err)
@@ -42,6 +43,7 @@ func InitDB() {
 	db.DB()
 	db.AutoMigrate(models.Feed{})
 	db.AutoMigrate(models.Item{})
+
 	//db.Create(models.Feed{Name: "reddit", Url: "http://localhost:9000/public/rss/reddit.xml"})
 	//db.Create(models.Feed{Name: "hn", Url: "http://localhost:9000/public/rss/hn.xml"})
 	//db.AutoMigrate(models.FeedItems{})

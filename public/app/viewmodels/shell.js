@@ -10,7 +10,7 @@
             router.map([
                 { route: '', title:'Welcome', moduleId: 'viewmodels/welcome', nav: true },
                 { route: 'flickr', moduleId: 'viewmodels/flickr', nav: true },
-                { route: 'asdf', moduleId: 'viewmodels/asdf', nav: true }
+                { route: 'gofeeder', moduleId: 'viewmodels/gofeeder', nav: true }
             ]).buildNavigationModel();
             
             return router.activate();

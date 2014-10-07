@@ -26,13 +26,13 @@
                 </li>
             </ul>
 
-            <form class="navbar-form navbar-right" role="search" data-bind="submit:search">
+            <!--<form class="navbar-form navbar-right" role="search" data-bind="submit:search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
-            </form>
+                </form>-->
         </div>
     </nav>
 
-    <div class="page-host" data-bind="router: { transition:'entrance' }"></div>
+    <div class="page-host" data-bind="router: { cacheViews: false }"></div>
 </div>

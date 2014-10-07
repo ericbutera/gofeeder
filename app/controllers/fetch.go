@@ -4,7 +4,7 @@ package controllers
 import (
 	"github.com/SlyMarbo/rss"
 	"github.com/revel/revel"
-	"gofeeder/app/models"
+	"github.com/ericbutera/gofeeder/app/models"
 	"time"
 )
 
@@ -21,7 +21,7 @@ func (c Fetch) Fetch() revel.Result {
 	Db.Find(&feeds)
 	var count = 0
 	for _, feed := range feeds {
-		revel.INFO.Printf("Feed %s", feed.Name)
+		revel.INFO.Printf("Feed %+v", feed)
 		fetched, err := rss.Fetch(feed.Url)
 		if err != nil {
 			revel.INFO.Printf("Unable to fetch %s: %s", feed.Url, err)
