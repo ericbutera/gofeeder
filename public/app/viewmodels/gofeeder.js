@@ -1,4 +1,4 @@
-define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
+define(['plugins/http', 'durandal/app', 'durandal/system', 'knockout'], function(http, app, system, ko) {
     var feeder = {
         displayName: 'Gofeeder',
         feeds: ko.observableArray([]),
@@ -6,7 +6,6 @@ define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
         activeFeed: ko.observable({}),
         activeItem: ko.observable({}),
         activate: function() {
-            console.log('gofeeder activate called');
             /*
             this would prevent reloading feeds on subsequent navigations to the app
             if (this.feeds().length > 0) {
@@ -15,7 +14,7 @@ define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
 
             var self = this;
             return http.get('/feed/index').then(function(feeds) {
-                console.log('response %o', feeds);
+                system.log('fetched %o feeds', feeds.length);
                 self.feeds(feeds);
             });
         },
@@ -23,15 +22,12 @@ define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
             var self = this;
             this.activeFeed(feed);
             this.activeItem({});
-            console.log('select called feed %o this %o ', feed, this);
             return http.get('/item/index?feedId=' + feed.Id).then(function(items) {
+                system.log('fetched %o items', items.length);
                 self.items(items);
             });
         },
         setItem: function(item) {
-            var self = this;
-            this.activeItem(item);
-            console.log('setting active item: %o', item);
             this.activeItem(item);
         }
     };
