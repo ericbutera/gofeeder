@@ -1,16 +1,18 @@
-<section>sup from gofeeder</section>
-
 <section>
-    <h2 data-bind="text: displayName"></h2>
 
     <!-- <div data-bind="text:ko.toJSON(activeFeed())">current feed</div> -->
-    <div data-bind="text:(activeFeed() && activeFeed().Name) || '&nbsp;'"></div>
+    <!-- <div data-bind="text:(activeFeed() && activeFeed().Name) || '&nbsp;'"></div>-->
     <div data-bind="text:(activeItem() && activeItem().Name) || ''"></div>
 
-    <div class="row" data-bind="foreach: feeds">
-      <div class="col-sm-6 col-md-3">
-        <a href="#" data-bind="click:function(){ $parent.setFeed.call($parent, $data); }, text:$data.Name"></a>
-      </div>
+    <div>
+    <ul class="nav nav-pills nav-stacked" data-bind="foreach: feeds">
+        <li data-bind="css:{ active: $parent.isFeedActive.call($parent, $data) }">
+        <a href="#" data-bind="click:function(){ $parent.setFeed.call($parent, $data); }">
+          <span class="badge pull-right" data-bind="text:Math.floor((Math.random() * 99) + 1)"></span>
+          <span data-bind="text:$data.Name">link</span>
+        </a>
+      </li>
+    </ul>
     </div>
 
     <!-- <div data-bind="text:ko.toJSON(items())"></div> -->
@@ -22,3 +24,47 @@
 
 </section>
 
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Collapsible Group Item #2
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Collapsible Group Item #3
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>

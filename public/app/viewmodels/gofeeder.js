@@ -1,6 +1,5 @@
 define(['plugins/http', 'durandal/app', 'durandal/system', 'knockout'], function(http, app, system, ko) {
     var feeder = {
-        displayName: 'Gofeeder',
         feeds: ko.observableArray([]),
         items: ko.observableArray([]),
         activeFeed: ko.observable({}),
@@ -29,6 +28,9 @@ define(['plugins/http', 'durandal/app', 'durandal/system', 'knockout'], function
         },
         setItem: function(item) {
             this.activeItem(item);
+        },
+        isFeedActive: function(feed) {
+            return this.activeFeed() && this.activeFeed().Id == feed.Id;
         }
     };
 
