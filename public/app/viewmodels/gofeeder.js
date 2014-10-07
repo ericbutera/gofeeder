@@ -7,9 +7,11 @@ define(['plugins/http', 'durandal/app', 'knockout'], function(http, app, ko) {
         activeItem: ko.observable({}),
         activate: function() {
             console.log('gofeeder activate called');
-            if (this.items().length > 0) {
+            /*
+            this would prevent reloading feeds on subsequent navigations to the app
+            if (this.feeds().length > 0) {
                 return;
-            }
+            }*/
 
             var self = this;
             return http.get('/feed/index').then(function(feeds) {
