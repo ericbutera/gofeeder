@@ -2,14 +2,14 @@
     <div class="row">
 
         <div class="col-md-4">
-        <ul class="nav nav-pills nav-stacked" data-bind="foreach: feeds">
-            <li data-bind="css:{ active: $parent.isFeedActive.call($parent, $data) }">
-            <a href="#" data-bind="click:function(){ $parent.setFeed.call($parent, $data); }">
-              <span class="badge pull-right" data-bind="text:Math.floor((Math.random() * 99) + 1)"></span>
-              <span data-bind="text:$data.Name">link</span>
-            </a>
-          </li>
-        </ul>
+            <ul class="nav nav-pills nav-stacked" data-bind="foreach: feeds">
+                <li data-bind="css:{ active: $parent.isFeedActive.call($parent, $data) }">
+                <a href="#" data-bind="click:function(){ $parent.setFeed.call($parent, $data); }">
+                  <span class="badge pull-right" data-bind="text:Math.floor((Math.random() * 99) + 1)"></span>
+                  <span data-bind="text:$data.Name">link</span>
+                </a>
+              </li>
+            </ul>
         </div>
 
         <div class="col-md-8">
@@ -26,7 +26,12 @@
                   </h4>
                 </div>
                 <div class="panel-collapse collapse" data-bind="attr:{ id: 'collapse-'+ $data.Id }">
-                  <div class="panel-body" data-bind="html:$data.Content">content</div>
+                  <div class="panel-body">
+                      getting rid of collapse for custom thing.  need to transition from listItem into activeItem when it loads and display!
+                      on change of activeItem clear out this data
+                      <div data-bind="html:$parent.activeItem() && $parent.activeItem().Content ? $parent.activeItem().Content : ''"></div>
+                  </div>
+                  <!-- data-bind="html:$data.Content" -->
                 </div>
               </div>
 

@@ -1,4 +1,7 @@
 define(['plugins/http', 'durandal/app', 'durandal/system', 'knockout'], function(http, app, system, ko) {
+    // use valueHasMutated when modifying observableArrays manually and need to update subscribers
+    // make some sort of grid for items that uses a partial item list
+    // make grid expand into full detail by fetching /item/view?id=
     var feeder = {
         feeds: ko.observableArray([]),
         items: ko.observableArray([]),
@@ -13,8 +16,10 @@ define(['plugins/http', 'durandal/app', 'durandal/system', 'knockout'], function
 
             var self = this;
             return http.get('/feed/index').then(function(feeds) {
-                system.log('fetched %o feeds', feeds.length);
-                self.feeds(feeds);
+                if (feeds && feeds.length) {
+                    system.log('fetched %o feeds', feeds.length);
+                    self.feeds(feeds);
+                }
             });
         },
         setFeed: function(feed) {
@@ -22,12 +27,23 @@ define(['plugins/http', 'durandal/app', 'durandal/system', 'knockout'], function
             this.activeFeed(feed);
             this.activeItem({});
             return http.get('/item/index?feedId=' + feed.Id).then(function(items) {
-                system.log('fetched %o items', items.length);
-                self.items(items);
+                if (items && items.length) {
+                    system.log('fetched %o items', items.length);
+                    self.items(items);
+                } else {
+                    self.items({});
+                }
             });
         },
-        setItem: function(item) {
-            this.activeItem(item);
+        setItem: function(listItem) {
+            var self = this;
+            system.log('setting list item %o', listItem);
+            return http.get('/item/view?id=' + listItem.Id).then(function(item) {
+                if (item && item.Id) {
+                    system.log('setting item %o', item);
+                    self.activeItem(item);
+                }
+            });
         },
         isFeedActive: function(feed) {
             return this.activeFeed() && this.activeFeed().Id == feed.Id;
@@ -39,6 +55,7 @@ define(['plugins/http', 'durandal/app', 'durandal/system', 'knockout'], function
         return name;
     }, feeder);*/
 
+    system.log("feeder %o", feeder);
     return feeder;
 });
 
