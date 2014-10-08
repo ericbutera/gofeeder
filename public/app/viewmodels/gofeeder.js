@@ -41,3 +41,4 @@ define(['plugins/http', 'durandal/app', 'durandal/system', 'knockout'], function
 
     return feeder;
 });
+
